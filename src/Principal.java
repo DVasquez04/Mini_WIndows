@@ -76,7 +76,10 @@ public class Principal extends javax.swing.JFrame {
         H2.start();
         
         
-        //cosas pal mp3
+        //cosa del calendario
+        //iniciar el JLabel de homescreen invisible
+        jl_RecordatorioActivo.setVisible(false);
+        //el hilo para mostrar el recordatorio
         
         
     }
@@ -221,6 +224,7 @@ public class Principal extends javax.swing.JFrame {
         jp_topbarHS = new javax.swing.JPanel();
         jl_HoraTopBar = new javax.swing.JLabel();
         jl_CurrentUser = new javax.swing.JLabel();
+        jl_RecordatorioActivo = new javax.swing.JLabel();
         jp_HomeScreenIcons = new javax.swing.JPanel();
         Icon_Navegador = new javax.swing.JLabel();
         Icon_FileExplorer = new javax.swing.JLabel();
@@ -922,6 +926,9 @@ public class Principal extends javax.swing.JFrame {
         );
 
         jd_Calendario.setTitle("Planeador de Eventos o Tareas");
+        jd_Calendario.setPreferredSize(new java.awt.Dimension(940, 530));
+        jd_Calendario.setResizable(false);
+        jd_Calendario.setSize(new java.awt.Dimension(1020, 530));
 
         jp_CalendarioBackGround.setBackground(new java.awt.Color(255, 204, 204));
         jp_CalendarioBackGround.setPreferredSize(new java.awt.Dimension(890, 520));
@@ -931,26 +938,33 @@ public class Principal extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 920, Short.MAX_VALUE)
+            .addGap(0, 1020, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 20, Short.MAX_VALUE)
         );
 
-        jp_CalendarioBackGround.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 20));
+        jp_CalendarioBackGround.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 20));
 
         jt_Recordatorios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Fecha de Recordatorio", "Titulo", "Notas"
+                "Fecha Recordatorio", "Titulo", "Notas", "Recordar"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, true, true
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -958,7 +972,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jt_Recordatorios);
 
-        jp_CalendarioBackGround.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 30, 400, 450));
+        jp_CalendarioBackGround.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 30, 380, 450));
 
         cb_HorasRecordatorio.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         cb_HorasRecordatorio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24" }));
@@ -1024,11 +1038,11 @@ public class Principal extends javax.swing.JFrame {
         jd_Calendario.getContentPane().setLayout(jd_CalendarioLayout);
         jd_CalendarioLayout.setHorizontalGroup(
             jd_CalendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jp_CalendarioBackGround, javax.swing.GroupLayout.PREFERRED_SIZE, 679, Short.MAX_VALUE)
+            .addComponent(jp_CalendarioBackGround, javax.swing.GroupLayout.DEFAULT_SIZE, 1020, Short.MAX_VALUE)
         );
         jd_CalendarioLayout.setVerticalGroup(
             jd_CalendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jp_CalendarioBackGround, javax.swing.GroupLayout.PREFERRED_SIZE, 438, Short.MAX_VALUE)
+            .addComponent(jp_CalendarioBackGround, javax.swing.GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE)
         );
 
         jp_CMDBackGround.setBackground(new java.awt.Color(255, 255, 255));
@@ -1091,11 +1105,21 @@ public class Principal extends javax.swing.JFrame {
 
         jb_Stop.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
         jb_Stop.setText("STOP");
-        jp_MusicPlayerBackGround.add(jb_Stop, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 300, 100, 70));
+        jb_Stop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_StopActionPerformed(evt);
+            }
+        });
+        jp_MusicPlayerBackGround.add(jb_Stop, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 300, 100, 70));
 
         jb_Pause.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
         jb_Pause.setText("PAUSE");
-        jp_MusicPlayerBackGround.add(jb_Pause, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 300, 100, 70));
+        jb_Pause.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_PauseActionPerformed(evt);
+            }
+        });
+        jp_MusicPlayerBackGround.add(jb_Pause, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 300, 160, 70));
 
         javax.swing.GroupLayout jd_MusicPlayerLayout = new javax.swing.GroupLayout(jd_MusicPlayer.getContentPane());
         jd_MusicPlayer.getContentPane().setLayout(jd_MusicPlayerLayout);
@@ -1287,12 +1311,18 @@ public class Principal extends javax.swing.JFrame {
         jl_CurrentUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jl_CurrentUser.setText("Admin");
 
+        jl_RecordatorioActivo.setForeground(new java.awt.Color(255, 255, 255));
+        jl_RecordatorioActivo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jl_RecordatorioActivo.setText("🕒");
+
         javax.swing.GroupLayout jp_topbarHSLayout = new javax.swing.GroupLayout(jp_topbarHS);
         jp_topbarHS.setLayout(jp_topbarHSLayout);
         jp_topbarHSLayout.setHorizontalGroup(
             jp_topbarHSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_topbarHSLayout.createSequentialGroup()
-                .addContainerGap(1320, Short.MAX_VALUE)
+                .addContainerGap(1237, Short.MAX_VALUE)
+                .addComponent(jl_RecordatorioActivo, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jl_HoraTopBar, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jl_CurrentUser, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1303,7 +1333,8 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jp_topbarHSLayout.createSequentialGroup()
                 .addGroup(jp_topbarHSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jl_HoraTopBar)
-                    .addComponent(jl_CurrentUser))
+                    .addComponent(jl_CurrentUser)
+                    .addComponent(jl_RecordatorioActivo))
                 .addGap(0, 16, Short.MAX_VALUE))
         );
 
@@ -1873,7 +1904,6 @@ public class Principal extends javax.swing.JFrame {
             String horarioFin = JOptionPane.showInputDialog("Ingrese a que hora termina: (hh:mm)");
             String HorarioFinal = horarioInicio+" -> "+horarioFin;
             
-            //setear la hora para el recordatorio si la fecha es igual a la de hoy o solo mostrar el recordatorio en homescreen si es un recordatorio que esta en el futuro de todas formas
             
             
             //llenar la tabla
@@ -1901,6 +1931,14 @@ public class Principal extends javax.swing.JFrame {
            
         }//fin if
         jt_TituloRecordatorio.setText("");
+        //setear la hora para el recordatorio si la fecha es igual a la de hoy o solo mostrar el recordatorio en homescreen si es un recordatorio que esta en el futuro de todas formas
+        String horaRec = cb_HorasRecordatorio.getSelectedItem().toString();
+        String minutosRec = cb_MinutosRecordatorio.getSelectedItem().toString();
+        String secsRec = cb_SegundosRecordatorio.getSelectedItem().toString();
+        String RecTime = horaRec+":"+minutosRec+":"+secsRec;
+        
+        //iniciar el thread
+        
     }//GEN-LAST:event_jb_ProcesarRecordatorioActionPerformed
 
     private void Icon_FileExplorerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Icon_FileExplorerMouseClicked
@@ -1964,30 +2002,54 @@ public class Principal extends javax.swing.JFrame {
 
     private void jb_PlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_PlayActionPerformed
         // TODO add your handling code here:
-        if(jt_Playlist.getSelectedRow() >= 0){
-            //asignar el index del arraylist de songpaths
-            int SongIndex = jt_Playlist.getSelectedRow();
-            String SongPath = WAVpaths.get(SongIndex);
-            try {
-                AudioInputStream song = AudioSystem.getAudioInputStream(new File(SongPath).getAbsoluteFile());
-                
-                try {
-                    c = AudioSystem.getClip();
-                    c.open(song);
-                    c.start();
-                } catch (Exception e) {
-                }
-                
-            } catch (UnsupportedAudioFileException ex) {
-                ex.printStackTrace();
-            } catch (IOException ex) {
-                ex.printStackTrace();
+        if(IsSongPlaying == false){
+            if(jt_Playlist.getSelectedRow() >= 0){
+                IsSongPlaying = true;
+                jb_Stop.setVisible(false);
+                //asignar el index del arraylist de songpaths
+                int SongIndex = jt_Playlist.getSelectedRow();
+                String SongPath = WAVpaths.get(SongIndex);
+                repro = new HiloAudio(SongPath);
+                HiloAudio = new Thread(repro);
+                HiloAudio.start();
+
+            }else{
+                JOptionPane.showMessageDialog(jd_MusicPlayer, "Primero escoga una cancion de la PlayList para escuchar.");
             }
-            
         }else{
-            JOptionPane.showMessageDialog(jd_MusicPlayer, "Primero escoga una cancion de la PlayList para escuchar.");
+            JOptionPane.showMessageDialog(jd_MusicPlayer, "No se puede escuchar 2 canciones al mismo tiempo...");
         }
     }//GEN-LAST:event_jb_PlayActionPerformed
+
+    private void jb_StopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_StopActionPerformed
+        // TODO add your handling code here:
+        if(Paused == false){
+            HiloAudio.stop();  
+        }else{
+            repro.pausarReproducir();
+            HiloAudio.stop();
+            jb_Pause.setText("PAUSE");
+        }
+        IsSongPlaying = false;
+    }//GEN-LAST:event_jb_StopActionPerformed
+
+    private void jb_PauseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_PauseActionPerformed
+        // TODO add your handling code here:
+        repro.pausarReproducir();
+        if(jb_Pause.getText().equalsIgnoreCase("Pause")){
+            jb_Pause.setText("RESUME");
+            //y decirle a la bandera que si esta pausada la cancion
+            Paused = true;
+            //ya que aparentemente es un requerimineto pausar la cancion antes de pararla para que todo no se muera
+            //Enable el jbutton de stop solo cuando este pausada la cancion
+            jb_Stop.setVisible(true);
+        }else if(jb_Pause.getText().equalsIgnoreCase("RESUME")){
+            jb_Pause.setText("PAUSE");
+            //decirle a la bandera que no esta pausada
+            Paused = false;
+            jb_Stop.setVisible(false);
+        }
+    }//GEN-LAST:event_jb_PauseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2048,7 +2110,15 @@ public class Principal extends javax.swing.JFrame {
     //mp3 arraylist de paths
     ArrayList <String> WAVpaths = new ArrayList();
     Clip c;
+    HiloAudio repro;
+    Thread HiloAudio;
+    //este boolean dice que: false == no esta pausada la current song, pero true == si esta pausada
+    boolean Paused = false;
+    boolean IsSongPlaying = false;
     
+    //cosas pal calendario
+    //boolean que dice si hay un recordatorio activo
+    boolean Recordatorio = false;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Icon_CDM;
     private javax.swing.JLabel Icon_Calendario;
@@ -2132,6 +2202,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jl_JustIzquierdaMord;
     private javax.swing.JLabel jl_LockScreen;
     private javax.swing.JLabel jl_LogoMindows;
+    private javax.swing.JLabel jl_RecordatorioActivo;
     private javax.swing.JLabel jl_Resaltar;
     private javax.swing.JLabel jl_TamMord;
     private javax.swing.JLabel jl_TiempoDelRecordatorio;

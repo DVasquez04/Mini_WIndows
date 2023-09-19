@@ -189,6 +189,9 @@ public class Principal extends javax.swing.JFrame {
         jt_TituloRecordatorio = new javax.swing.JTextField();
         jd_CMD = new javax.swing.JDialog();
         jp_CMDBackGround = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTextPane1 = new javax.swing.JTextPane();
         jd_MusicPlayer = new javax.swing.JDialog();
         jp_MusicPlayerBackGround = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -226,6 +229,17 @@ public class Principal extends javax.swing.JFrame {
         jm_Cancelar1 = new javax.swing.JMenuItem();
         jpm_JTreeMenu = new javax.swing.JPopupMenu();
         jm_Organizar = new javax.swing.JMenuItem();
+        jSeparator10 = new javax.swing.JPopupMenu.Separator();
+        jm_OrdenarNombre = new javax.swing.JMenuItem();
+        jm_OrdenarFecha = new javax.swing.JMenuItem();
+        jm_OrdenarTipo = new javax.swing.JMenuItem();
+        jm_OrdenarTamaño = new javax.swing.JMenuItem();
+        jSeparator11 = new javax.swing.JPopupMenu.Separator();
+        JM_ExtraOpciones = new javax.swing.JMenu();
+        jm_Agregar = new javax.swing.JMenuItem();
+        jm_CambiarNombre = new javax.swing.JMenuItem();
+        jm_Copiar = new javax.swing.JMenuItem();
+        jm_Pegar = new javax.swing.JMenuItem();
         jp_LockScreenBackGround = new javax.swing.JPanel();
         jl_LockScreen = new javax.swing.JLabel();
         jp_HomeScreenBackGround = new javax.swing.JPanel();
@@ -1068,8 +1082,28 @@ public class Principal extends javax.swing.JFrame {
             .addComponent(jp_CalendarioBackGround, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
         );
 
-        jp_CMDBackGround.setBackground(new java.awt.Color(255, 255, 255));
+        jp_CMDBackGround.setBackground(new java.awt.Color(0, 0, 0));
         jp_CMDBackGround.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 620, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 20, Short.MAX_VALUE)
+        );
+
+        jp_CMDBackGround.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 20));
+
+        jTextPane1.setBackground(new java.awt.Color(0, 0, 0));
+        jTextPane1.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        jTextPane1.setForeground(new java.awt.Color(0, 0, 0));
+        jScrollPane5.setViewportView(jTextPane1);
+
+        jp_CMDBackGround.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 600, 290));
 
         javax.swing.GroupLayout jd_CMDLayout = new javax.swing.GroupLayout(jd_CMD.getContentPane());
         jd_CMD.getContentPane().setLayout(jd_CMDLayout);
@@ -1079,7 +1113,7 @@ public class Principal extends javax.swing.JFrame {
         );
         jd_CMDLayout.setVerticalGroup(
             jd_CMDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jp_CMDBackGround, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jp_CMDBackGround, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
         );
 
         jd_MusicPlayer.setTitle("Mp3 Player");
@@ -1276,8 +1310,65 @@ public class Principal extends javax.swing.JFrame {
         jm_Cancelar1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jpm_UsuariosSettingsAdmin.add(jm_Cancelar1);
 
-        jm_Organizar.setText("jMenuItem1");
+        jm_Organizar.setFont(new java.awt.Font("Comic Sans MS", 1, 12)); // NOI18N
+        jm_Organizar.setForeground(new java.awt.Color(0, 0, 0));
+        jm_Organizar.setText("Organizar");
+        jm_Organizar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jm_Organizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jm_OrganizarActionPerformed(evt);
+            }
+        });
         jpm_JTreeMenu.add(jm_Organizar);
+        jpm_JTreeMenu.add(jSeparator10);
+
+        jm_OrdenarNombre.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        jm_OrdenarNombre.setForeground(new java.awt.Color(0, 0, 0));
+        jm_OrdenarNombre.setText("Ordenar por Nombre");
+        jpm_JTreeMenu.add(jm_OrdenarNombre);
+
+        jm_OrdenarFecha.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        jm_OrdenarFecha.setForeground(new java.awt.Color(0, 0, 0));
+        jm_OrdenarFecha.setText("Ordenar por Fecha");
+        jpm_JTreeMenu.add(jm_OrdenarFecha);
+
+        jm_OrdenarTipo.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        jm_OrdenarTipo.setForeground(new java.awt.Color(0, 0, 0));
+        jm_OrdenarTipo.setText("Ordenar por Tipo");
+        jpm_JTreeMenu.add(jm_OrdenarTipo);
+
+        jm_OrdenarTamaño.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        jm_OrdenarTamaño.setForeground(new java.awt.Color(0, 0, 0));
+        jm_OrdenarTamaño.setText("Ordenar por Tamaño");
+        jpm_JTreeMenu.add(jm_OrdenarTamaño);
+        jpm_JTreeMenu.add(jSeparator11);
+
+        JM_ExtraOpciones.setForeground(new java.awt.Color(0, 0, 0));
+        JM_ExtraOpciones.setText("Extra Opciones");
+        JM_ExtraOpciones.setFont(new java.awt.Font("Comic Sans MS", 1, 12)); // NOI18N
+        JM_ExtraOpciones.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        jm_Agregar.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        jm_Agregar.setForeground(new java.awt.Color(0, 0, 0));
+        jm_Agregar.setText("Nuevo");
+        JM_ExtraOpciones.add(jm_Agregar);
+
+        jm_CambiarNombre.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        jm_CambiarNombre.setForeground(new java.awt.Color(0, 0, 0));
+        jm_CambiarNombre.setText("Cambiar Nombre");
+        JM_ExtraOpciones.add(jm_CambiarNombre);
+
+        jm_Copiar.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        jm_Copiar.setForeground(new java.awt.Color(0, 0, 0));
+        jm_Copiar.setText("Copiar");
+        JM_ExtraOpciones.add(jm_Copiar);
+
+        jm_Pegar.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        jm_Pegar.setForeground(new java.awt.Color(0, 0, 0));
+        jm_Pegar.setText("Pegar");
+        JM_ExtraOpciones.add(jm_Pegar);
+
+        jpm_JTreeMenu.add(JM_ExtraOpciones);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -1369,8 +1460,9 @@ public class Principal extends javax.swing.JFrame {
         jp_HomeScreenIcons.setBackground(new java.awt.Color(51, 51, 51));
 
         Icon_Navegador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Operagx_logo.png"))); // NOI18N
+        Icon_Navegador.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        Icon_FileExplorer.setText("*file Explorer");
+        Icon_FileExplorer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/filNavigator.jpg"))); // NOI18N
         Icon_FileExplorer.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Icon_FileExplorer.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1378,7 +1470,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        Icon_Mord.setText("*Mord");
+        Icon_Mord.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Mord.jpg"))); // NOI18N
         Icon_Mord.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Icon_Mord.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1386,7 +1478,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        Icon_Imagen.setText("*Image");
+        Icon_Imagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Img.png"))); // NOI18N
         Icon_Imagen.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Icon_Imagen.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1394,7 +1486,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        Icon_Calendario.setText("*Calendario");
+        Icon_Calendario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Calendar.jpg"))); // NOI18N
         Icon_Calendario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Icon_Calendario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1402,9 +1494,15 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        Icon_CDM.setText("*CMD");
+        Icon_CDM.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/cmd.png"))); // NOI18N
+        Icon_CDM.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Icon_CDM.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Icon_CDMMouseClicked(evt);
+            }
+        });
 
-        Icon_MP3.setText("*MP3");
+        Icon_MP3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/spoty.png"))); // NOI18N
         Icon_MP3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Icon_MP3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1412,11 +1510,14 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        Icon_Msjr.setText("*Mensajero");
+        Icon_Msjr.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/whats.jpg"))); // NOI18N
+        Icon_Msjr.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        Icon_RedSocial.setText("*RdSocial");
+        Icon_RedSocial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/meta.png"))); // NOI18N
+        Icon_RedSocial.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        Icon_NetBeans.setText("*NetBeans");
+        Icon_NetBeans.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/NetB.png"))); // NOI18N
+        Icon_NetBeans.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout jp_HomeScreenIconsLayout = new javax.swing.GroupLayout(jp_HomeScreenIcons);
         jp_HomeScreenIcons.setLayout(jp_HomeScreenIconsLayout);
@@ -2136,6 +2237,23 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_JT_FileNavigatorMouseClicked
 
+    private void jm_OrganizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_OrganizarActionPerformed
+        // TODO add your handling code here:
+        //shuffle todas las carpetas principales dentro de otra (musica, imagenes, docs, otros)
+        DefaultTreeModel m = (DefaultTreeModel) JT_FileNavigator.getModel();
+        DefaultMutableTreeNode Z = (DefaultMutableTreeNode) m.getRoot();
+        
+    }//GEN-LAST:event_jm_OrganizarActionPerformed
+
+    private void Icon_CDMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Icon_CDMMouseClicked
+        // TODO add your handling code here:
+        //abrir jd del cmd
+        jd_CMD.pack();
+        jd_CMD.setModal(true);
+        jd_CMD.setLocationRelativeTo(this);
+        jd_CMD.setVisible(true);
+    }//GEN-LAST:event_Icon_CDMMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -2234,6 +2352,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel Icon_PegarMord;
     private javax.swing.JLabel Icon_RedSocial;
     private javax.swing.JLabel Icon_TijeraMord;
+    private javax.swing.JMenu JM_ExtraOpciones;
     private javax.swing.JTree JT_FileNavigator;
     private javax.swing.JTextPane TP_PaginaMord;
     private javax.swing.JButton UselessButton;
@@ -2246,11 +2365,15 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator10;
+    private javax.swing.JPopupMenu.Separator jSeparator11;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
@@ -2259,6 +2382,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator7;
     private javax.swing.JPopupMenu.Separator jSeparator8;
     private javax.swing.JPopupMenu.Separator jSeparator9;
+    private javax.swing.JTextPane jTextPane1;
     private javax.swing.JButton jb_AgregarCancion;
     private javax.swing.JButton jb_Ok;
     private javax.swing.JButton jb_Pause;
@@ -2317,17 +2441,25 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jl_userName;
     private javax.swing.JLabel jl_wicrosoftCorp;
     private javax.swing.JMenuItem jm_AdminPass;
+    private javax.swing.JMenuItem jm_Agregar;
     private javax.swing.JMenuItem jm_AgregarUsuario;
+    private javax.swing.JMenuItem jm_CambiarNombre;
     private javax.swing.JMenuItem jm_Cancelar;
     private javax.swing.JMenuItem jm_Cancelar1;
     private javax.swing.JMenuItem jm_ChangePassword;
+    private javax.swing.JMenuItem jm_Copiar;
     private javax.swing.JMenuItem jm_EliminarUsuario;
     private javax.swing.JMenuItem jm_LimpiarCajas;
     private javax.swing.JMenuItem jm_LockComputer;
     private javax.swing.JMenuItem jm_LogOff;
     private javax.swing.JMenuItem jm_MordAbrir;
     private javax.swing.JMenuItem jm_MordGuardar;
+    private javax.swing.JMenuItem jm_OrdenarFecha;
+    private javax.swing.JMenuItem jm_OrdenarNombre;
+    private javax.swing.JMenuItem jm_OrdenarTamaño;
+    private javax.swing.JMenuItem jm_OrdenarTipo;
     private javax.swing.JMenuItem jm_Organizar;
+    private javax.swing.JMenuItem jm_Pegar;
     private javax.swing.JMenuItem jm_SwitchUser;
     private javax.swing.JPanel jp_CMDBackGround;
     private javax.swing.JPanel jp_CalendarioBackGround;

@@ -1183,13 +1183,21 @@
               </AuxValues>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="100" y="50" width="520" height="390"/>
+                  <AbsoluteConstraints x="80" y="40" width="520" height="390"/>
                 </Constraint>
               </Constraints>
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTree" name="jTree1">
+                <Component class="javax.swing.JTree" name="JT_FileNavigator">
+                  <Properties>
+                    <Property name="model" type="javax.swing.tree.TreeModel" editor="org.netbeans.modules.form.editors2.TreeModelEditor">
+                      <TreeModel code=":Z&#xa; Musica&#xa;  &#xa; Imagenes&#xa;  &#xa; Documentos&#xa;  &#xa; Otros&#xa;  &#xa;  "/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="JT_FileNavigatorMouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -1377,7 +1385,7 @@
                         <Column editable="false" title="Fecha Recordatorio" type="java.lang.Object"/>
                         <Column editable="false" title="Titulo" type="java.lang.Object"/>
                         <Column editable="false" title="Notas" type="java.lang.Object"/>
-                        <Column editable="true" title="Recordar" type="java.lang.Boolean"/>
+                        <Column editable="true" title="No Recordar" type="java.lang.Boolean"/>
                       </Table>
                     </Property>
                   </Properties>
@@ -1390,7 +1398,7 @@
                   <Font name="Comic Sans MS" size="14" style="1"/>
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="25">
+                  <StringArray count="13">
                     <StringItem index="0" value="00"/>
                     <StringItem index="1" value="01"/>
                     <StringItem index="2" value="02"/>
@@ -1404,18 +1412,6 @@
                     <StringItem index="10" value="10"/>
                     <StringItem index="11" value="11"/>
                     <StringItem index="12" value="12"/>
-                    <StringItem index="13" value="13"/>
-                    <StringItem index="14" value="14"/>
-                    <StringItem index="15" value="15"/>
-                    <StringItem index="16" value="16"/>
-                    <StringItem index="17" value="17"/>
-                    <StringItem index="18" value="18"/>
-                    <StringItem index="19" value="19"/>
-                    <StringItem index="20" value="20"/>
-                    <StringItem index="21" value="21"/>
-                    <StringItem index="22" value="22"/>
-                    <StringItem index="23" value="23"/>
-                    <StringItem index="24" value="24"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -2124,6 +2120,19 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Cancelar"/>
             <Property name="horizontalAlignment" type="int" value="0"/>
+          </Properties>
+        </MenuItem>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JPopupMenu" name="jpm_JTreeMenu">
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+        <Property name="useNullLayout" type="boolean" value="true"/>
+      </Layout>
+      <SubComponents>
+        <MenuItem class="javax.swing.JMenuItem" name="jm_Organizar">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="jMenuItem1"/>
           </Properties>
         </MenuItem>
       </SubComponents>

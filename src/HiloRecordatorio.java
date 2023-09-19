@@ -2,6 +2,8 @@
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -15,7 +17,7 @@ import javax.swing.JOptionPane;
  * @author Diego Vasquez
  */
 public class HiloRecordatorio implements Runnable{
-    private boolean Recordar = true;
+    private boolean Recordar;
     private String HoradeRecordatorio;
     private JLabel recordatorioActivo;
 
@@ -44,6 +46,7 @@ public class HiloRecordatorio implements Runnable{
             if(HoradeRecordatorio.equals(atS)){
                 JOptionPane.showMessageDialog(null, "ALARMA RECORDATORIO");
                 Recordar = false;
+                recordatorioActivo.setVisible(false);
             }
             
             //thread sleep
@@ -53,7 +56,11 @@ public class HiloRecordatorio implements Runnable{
                 ex.printStackTrace();
             }
         }
-        recordatorioActivo.setVisible(false);
+        try {
+            Thread.sleep(120000);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(HiloRecordatorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }

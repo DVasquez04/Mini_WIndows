@@ -8,6 +8,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
@@ -28,6 +30,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -81,6 +85,8 @@ public class Principal extends javax.swing.JFrame {
         jl_RecordatorioActivo.setVisible(false);
         //el hilo para mostrar el recordatorio
         
+        //cosas del fileNavigator
+        modeloBase = (DefaultTreeModel)JT_FileNavigator.getModel();
         
     }
 
@@ -156,7 +162,7 @@ public class Principal extends javax.swing.JFrame {
         jp_FileNavegatorBackGround = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTree1 = new javax.swing.JTree();
+        JT_FileNavigator = new javax.swing.JTree();
         jd_VisorImagenes = new javax.swing.JDialog();
         jp_VisorImagenesBackGround = new javax.swing.JPanel();
         jl_VisorPrincipal = new javax.swing.JLabel();
@@ -218,6 +224,8 @@ public class Principal extends javax.swing.JFrame {
         jm_EliminarUsuario = new javax.swing.JMenuItem();
         jSeparator9 = new javax.swing.JPopupMenu.Separator();
         jm_Cancelar1 = new javax.swing.JMenuItem();
+        jpm_JTreeMenu = new javax.swing.JPopupMenu();
+        jm_Organizar = new javax.swing.JMenuItem();
         jp_LockScreenBackGround = new javax.swing.JPanel();
         jl_LockScreen = new javax.swing.JLabel();
         jp_HomeScreenBackGround = new javax.swing.JPanel();
@@ -859,9 +867,24 @@ public class Principal extends javax.swing.JFrame {
 
         jp_FileNavegatorBackGround.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 30));
 
-        jScrollPane3.setViewportView(jTree1);
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode(":Z");
+        javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Musica");
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Imagenes");
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Documentos");
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Otros");
+        treeNode1.add(treeNode2);
+        JT_FileNavigator.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        JT_FileNavigator.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JT_FileNavigatorMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(JT_FileNavigator);
 
-        jp_FileNavegatorBackGround.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 520, 390));
+        jp_FileNavegatorBackGround.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 520, 390));
 
         javax.swing.GroupLayout jd_FileNavegatorLayout = new javax.swing.GroupLayout(jd_FileNavegator.getContentPane());
         jd_FileNavegator.getContentPane().setLayout(jd_FileNavegatorLayout);
@@ -952,7 +975,7 @@ public class Principal extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Fecha Recordatorio", "Titulo", "Notas", "Recordar"
+                "Fecha Recordatorio", "Titulo", "Notas", "No Recordar"
             }
         ) {
             Class[] types = new Class [] {
@@ -975,7 +998,7 @@ public class Principal extends javax.swing.JFrame {
         jp_CalendarioBackGround.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 30, 380, 450));
 
         cb_HorasRecordatorio.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        cb_HorasRecordatorio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24" }));
+        cb_HorasRecordatorio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
         jp_CalendarioBackGround.add(cb_HorasRecordatorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 420, -1, -1));
 
         cb_MinutosRecordatorio.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
@@ -1042,7 +1065,7 @@ public class Principal extends javax.swing.JFrame {
         );
         jd_CalendarioLayout.setVerticalGroup(
             jd_CalendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jp_CalendarioBackGround, javax.swing.GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE)
+            .addComponent(jp_CalendarioBackGround, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
         );
 
         jp_CMDBackGround.setBackground(new java.awt.Color(255, 255, 255));
@@ -1252,6 +1275,9 @@ public class Principal extends javax.swing.JFrame {
         jm_Cancelar1.setText("Cancelar");
         jm_Cancelar1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jpm_UsuariosSettingsAdmin.add(jm_Cancelar1);
+
+        jm_Organizar.setText("jMenuItem1");
+        jpm_JTreeMenu.add(jm_Organizar);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -1936,13 +1962,65 @@ public class Principal extends javax.swing.JFrame {
         String minutosRec = cb_MinutosRecordatorio.getSelectedItem().toString();
         String secsRec = cb_SegundosRecordatorio.getSelectedItem().toString();
         String RecTime = horaRec+":"+minutosRec+":"+secsRec;
-        
+        Date h = new Date();
+        DateFormat df = new SimpleDateFormat("hh:mm:ss");
+        String atS = df.format(h);
+        System.out.println(atS);
         //iniciar el thread
-        
+        HiloRecordatorio rec = new HiloRecordatorio(jl_RecordatorioActivo, RecTime);
+        Thread record = new Thread(rec);
+        record.start();
     }//GEN-LAST:event_jb_ProcesarRecordatorioActionPerformed
 
     private void Icon_FileExplorerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Icon_FileExplorerMouseClicked
         // TODO add your handling code here:
+        //ver si el modelo del arbol es diferente al original para reiniciar el arbol
+        DefaultTreeModel mod1 = (DefaultTreeModel)JT_FileNavigator.getModel();
+            //JT_FileNavigator.setModel(modeloBase);
+            DefaultTreeModel m = (DefaultTreeModel) JT_FileNavigator.getModel();
+            DefaultMutableTreeNode Z = (DefaultMutableTreeNode) m.getRoot();
+            DefaultMutableTreeNode arch;
+            for (int i = 0; i < 4; i++) {
+                switch (i) {
+                    case 0:{
+                        //llenar musica
+                        arch = new DefaultMutableTreeNode(torDance);
+                        DefaultMutableTreeNode arch1 = new DefaultMutableTreeNode(sans);
+                        DefaultMutableTreeNode arch2 = new DefaultMutableTreeNode(pollito);
+                        ((DefaultMutableTreeNode) Z.getChildAt(i)).add(arch);
+                        ((DefaultMutableTreeNode) Z.getChildAt(i)).add(arch1);
+                        ((DefaultMutableTreeNode) Z.getChildAt(i)).add(arch2);
+                    }//fin case 0
+                    break;
+                    case 1:{
+                        //llenar imagenes
+                        arch = new DefaultMutableTreeNode(mordida);
+                        DefaultMutableTreeNode arch1 = new DefaultMutableTreeNode(grad);
+                        DefaultMutableTreeNode arch2 = new DefaultMutableTreeNode(pfp);
+                        ((DefaultMutableTreeNode) Z.getChildAt(i)).add(arch);
+                        ((DefaultMutableTreeNode) Z.getChildAt(i)).add(arch1);
+                        ((DefaultMutableTreeNode) Z.getChildAt(i)).add(arch2);
+                    }//fin case
+                    break;
+                    case 2:{
+                        //llenar documentos
+                        arch = new DefaultMutableTreeNode(tarj);
+                        DefaultMutableTreeNode arch1 = new DefaultMutableTreeNode(acta);
+                        ((DefaultMutableTreeNode) Z.getChildAt(i)).add(arch);
+                        ((DefaultMutableTreeNode) Z.getChildAt(i)).add(arch1);
+                    }//fin case
+                    break;
+                    case 3:{
+                        //llenar otros
+                        arch = new DefaultMutableTreeNode(receta);
+                        ((DefaultMutableTreeNode) Z.getChildAt(i)).add(arch);
+                    }//fin case
+                    break;
+                }//fin switch
+            }//fin for
+            m.reload();
+            JT_FileNavigator.setModel(m);
+        
         jd_FileNavegator.pack();
         jd_FileNavegator.setModal(true);
         jd_FileNavegator.setLocationRelativeTo(this);
@@ -2051,6 +2129,13 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jb_PauseActionPerformed
 
+    private void JT_FileNavigatorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JT_FileNavigatorMouseClicked
+        // TODO add your handling code here:
+        if(evt.isMetaDown()){
+            jpm_JTreeMenu.show(JT_FileNavigator, evt.getX(), evt.getY());
+        }
+    }//GEN-LAST:event_JT_FileNavigatorMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -2119,6 +2204,20 @@ public class Principal extends javax.swing.JFrame {
     //cosas pal calendario
     //boolean que dice si hay un recordatorio activo
     boolean Recordatorio = false;
+    
+    //cosas pal filechooser
+    DefaultTreeModel modeloBase;
+    //archivos hard pal jtree
+    static Archivo torDance = new Archivo("TortureDance", new Date(), "WAV", "2k");
+    static Archivo sans = new Archivo("Sans", new Date(), "WAV", "1k");
+    static Archivo pollito = new Archivo("ElPollitoPio", new Date(), "WAV", "3k");
+    static Archivo pfp = new Archivo("Pfp", new Date(), "img", "5k");
+    static Archivo mordida = new Archivo("LaMordidaDel84", new Date(), "img", "3k");
+    static Archivo grad = new Archivo("Graduacion2023", new Date(), "img", "5k");
+    static Archivo tarj = new Archivo("TarjetaIdentidad", new Date(), "pdf", "1k");
+    static Archivo acta = new Archivo("ActaNacimiento", new Date(), "pdf", "1k");
+    static Archivo receta = new Archivo("RecetaCangreburger", new Date(), "txt", "6k");
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Icon_CDM;
     private javax.swing.JLabel Icon_Calendario;
@@ -2135,6 +2234,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel Icon_PegarMord;
     private javax.swing.JLabel Icon_RedSocial;
     private javax.swing.JLabel Icon_TijeraMord;
+    private javax.swing.JTree JT_FileNavigator;
     private javax.swing.JTextPane TP_PaginaMord;
     private javax.swing.JButton UselessButton;
     private javax.swing.ButtonGroup bg_TareaoEvento;
@@ -2159,7 +2259,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator7;
     private javax.swing.JPopupMenu.Separator jSeparator8;
     private javax.swing.JPopupMenu.Separator jSeparator9;
-    private javax.swing.JTree jTree1;
     private javax.swing.JButton jb_AgregarCancion;
     private javax.swing.JButton jb_Ok;
     private javax.swing.JButton jb_Pause;
@@ -2228,6 +2327,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jm_LogOff;
     private javax.swing.JMenuItem jm_MordAbrir;
     private javax.swing.JMenuItem jm_MordGuardar;
+    private javax.swing.JMenuItem jm_Organizar;
     private javax.swing.JMenuItem jm_SwitchUser;
     private javax.swing.JPanel jp_CMDBackGround;
     private javax.swing.JPanel jp_CalendarioBackGround;
@@ -2258,6 +2358,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jp_midBackGround;
     private javax.swing.JPanel jp_topBackGround;
     private javax.swing.JPanel jp_topbarHS;
+    private javax.swing.JPopupMenu jpm_JTreeMenu;
     private javax.swing.JPopupMenu jpm_LogInOpciones;
     private javax.swing.JPopupMenu jpm_MordArchivo;
     private javax.swing.JPopupMenu jpm_SessionShutter;
@@ -2270,5 +2371,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField jt_UserName;
     private javax.swing.JTextField jt_password;
     // End of variables declaration//GEN-END:variables
-}
+}  
+    
 

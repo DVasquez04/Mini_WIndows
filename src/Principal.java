@@ -1,17 +1,20 @@
 
-import com.sun.source.tree.TryTree;
 import java.awt.Color;
 import java.awt.GraphicsEnvironment;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,7 +26,6 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JColorChooser;
 import javax.swing.JFileChooser;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
@@ -32,6 +34,7 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.MutableTreeNode;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -83,7 +86,6 @@ public class Principal extends javax.swing.JFrame {
         //cosa del calendario
         //iniciar el JLabel de homescreen invisible
         jl_RecordatorioActivo.setVisible(false);
-        //el hilo para mostrar el recordatorio
         
         //cosas del fileNavigator
         modeloBase = (DefaultTreeModel)JT_FileNavigator.getModel();
@@ -202,6 +204,14 @@ public class Principal extends javax.swing.JFrame {
         jb_Pause = new javax.swing.JButton();
         jd_Mensajero = new javax.swing.JDialog();
         jp_mensajeroBackGround = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        TP_GroupChat = new javax.swing.JTextPane();
+        JL_PcGroupChat = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        TP_MsgKeyBoard = new javax.swing.JTextPane();
+        jb_SendText = new javax.swing.JButton();
         jd_Meta = new javax.swing.JDialog();
         jp_MetaBackGround = new javax.swing.JPanel();
         jd_NetBeans = new javax.swing.JDialog();
@@ -1189,8 +1199,68 @@ public class Principal extends javax.swing.JFrame {
             .addComponent(jp_MusicPlayerBackGround, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
         );
 
-        jp_mensajeroBackGround.setBackground(new java.awt.Color(255, 255, 255));
+        jp_mensajeroBackGround.setBackground(new java.awt.Color(102, 102, 255));
         jp_mensajeroBackGround.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 700, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 20, Short.MAX_VALUE)
+        );
+
+        jp_mensajeroBackGround.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 20));
+
+        TP_GroupChat.setEditable(false);
+        jScrollPane6.setViewportView(TP_GroupChat);
+
+        jp_mensajeroBackGround.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 670, 310));
+
+        JL_PcGroupChat.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        JL_PcGroupChat.setForeground(new java.awt.Color(0, 0, 0));
+        JL_PcGroupChat.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        JL_PcGroupChat.setText("PC GroupChat");
+        jp_mensajeroBackGround.add(JL_PcGroupChat, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 110, -1));
+
+        jPanel5.setBackground(new java.awt.Color(153, 153, 153));
+
+        jScrollPane7.setViewportView(TP_MsgKeyBoard);
+
+        jb_SendText.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        jb_SendText.setForeground(new java.awt.Color(0, 0, 0));
+        jb_SendText.setText("SEND");
+        jb_SendText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_SendTextActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(jb_SendText)
+                .addGap(26, 26, 26))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane7)
+                    .addComponent(jb_SendText, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
+        );
+
+        jp_mensajeroBackGround.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 380, 700, -1));
 
         javax.swing.GroupLayout jd_MensajeroLayout = new javax.swing.GroupLayout(jd_Mensajero.getContentPane());
         jd_Mensajero.getContentPane().setLayout(jd_MensajeroLayout);
@@ -1200,7 +1270,7 @@ public class Principal extends javax.swing.JFrame {
         );
         jd_MensajeroLayout.setVerticalGroup(
             jd_MensajeroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jp_mensajeroBackGround, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jp_mensajeroBackGround, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
         );
 
         jp_MetaBackGround.setBackground(new java.awt.Color(255, 255, 255));
@@ -1325,21 +1395,41 @@ public class Principal extends javax.swing.JFrame {
         jm_OrdenarNombre.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         jm_OrdenarNombre.setForeground(new java.awt.Color(0, 0, 0));
         jm_OrdenarNombre.setText("Ordenar por Nombre");
+        jm_OrdenarNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jm_OrdenarNombreActionPerformed(evt);
+            }
+        });
         jpm_JTreeMenu.add(jm_OrdenarNombre);
 
         jm_OrdenarFecha.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         jm_OrdenarFecha.setForeground(new java.awt.Color(0, 0, 0));
         jm_OrdenarFecha.setText("Ordenar por Fecha");
+        jm_OrdenarFecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jm_OrdenarFechaActionPerformed(evt);
+            }
+        });
         jpm_JTreeMenu.add(jm_OrdenarFecha);
 
         jm_OrdenarTipo.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         jm_OrdenarTipo.setForeground(new java.awt.Color(0, 0, 0));
         jm_OrdenarTipo.setText("Ordenar por Tipo");
+        jm_OrdenarTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jm_OrdenarTipoActionPerformed(evt);
+            }
+        });
         jpm_JTreeMenu.add(jm_OrdenarTipo);
 
         jm_OrdenarTamaño.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         jm_OrdenarTamaño.setForeground(new java.awt.Color(0, 0, 0));
         jm_OrdenarTamaño.setText("Ordenar por Tamaño");
+        jm_OrdenarTamaño.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jm_OrdenarTamañoActionPerformed(evt);
+            }
+        });
         jpm_JTreeMenu.add(jm_OrdenarTamaño);
         jpm_JTreeMenu.add(jSeparator11);
 
@@ -1351,11 +1441,21 @@ public class Principal extends javax.swing.JFrame {
         jm_Agregar.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         jm_Agregar.setForeground(new java.awt.Color(0, 0, 0));
         jm_Agregar.setText("Nuevo");
+        jm_Agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jm_AgregarActionPerformed(evt);
+            }
+        });
         JM_ExtraOpciones.add(jm_Agregar);
 
         jm_CambiarNombre.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         jm_CambiarNombre.setForeground(new java.awt.Color(0, 0, 0));
         jm_CambiarNombre.setText("Cambiar Nombre");
+        jm_CambiarNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jm_CambiarNombreActionPerformed(evt);
+            }
+        });
         JM_ExtraOpciones.add(jm_CambiarNombre);
 
         jm_Copiar.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
@@ -1512,9 +1612,19 @@ public class Principal extends javax.swing.JFrame {
 
         Icon_Msjr.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/whats.jpg"))); // NOI18N
         Icon_Msjr.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Icon_Msjr.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Icon_MsjrMouseClicked(evt);
+            }
+        });
 
         Icon_RedSocial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/meta.png"))); // NOI18N
         Icon_RedSocial.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Icon_RedSocial.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Icon_RedSocialMouseClicked(evt);
+            }
+        });
 
         Icon_NetBeans.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/NetB.png"))); // NOI18N
         Icon_NetBeans.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -1668,7 +1778,7 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.out.println(evt.getKeyCode());
         if(evt.getKeyCode()==13){
-            System.out.println("hola si preciono");
+            //System.out.println("hola si preciono");
             InitSesh();
         }
     }//GEN-LAST:event_jl_LockScreenKeyPressed
@@ -2076,7 +2186,6 @@ public class Principal extends javax.swing.JFrame {
     private void Icon_FileExplorerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Icon_FileExplorerMouseClicked
         // TODO add your handling code here:
         //ver si el modelo del arbol es diferente al original para reiniciar el arbol
-        DefaultTreeModel mod1 = (DefaultTreeModel)JT_FileNavigator.getModel();
             //JT_FileNavigator.setModel(modeloBase);
             DefaultTreeModel m = (DefaultTreeModel) JT_FileNavigator.getModel();
             DefaultMutableTreeNode Z = (DefaultMutableTreeNode) m.getRoot();
@@ -2242,7 +2351,8 @@ public class Principal extends javax.swing.JFrame {
         //shuffle todas las carpetas principales dentro de otra (musica, imagenes, docs, otros)
         DefaultTreeModel m = (DefaultTreeModel) JT_FileNavigator.getModel();
         DefaultMutableTreeNode Z = (DefaultMutableTreeNode) m.getRoot();
-        
+        RandomizarTree(Z);
+        ((DefaultTreeModel) JT_FileNavigator.getModel()).reload();
     }//GEN-LAST:event_jm_OrganizarActionPerformed
 
     private void Icon_CDMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Icon_CDMMouseClicked
@@ -2253,6 +2363,161 @@ public class Principal extends javax.swing.JFrame {
         jd_CMD.setLocationRelativeTo(this);
         jd_CMD.setVisible(true);
     }//GEN-LAST:event_Icon_CDMMouseClicked
+
+    private void jm_OrdenarNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_OrdenarNombreActionPerformed
+        // TODO add your handling code here:
+        //ordenar capreta seleccionada por nombre
+        DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) JT_FileNavigator.getLastSelectedPathComponent();
+            if (selectedNode != null) {
+                OrdenarAlpha(selectedNode);
+                ((DefaultTreeModel) JT_FileNavigator.getModel()).reload(selectedNode);
+            }else{
+                JOptionPane.showMessageDialog(jd_FileNavegator, "Primero escoja una carpeta con cosas adentro");
+            }
+    }//GEN-LAST:event_jm_OrdenarNombreActionPerformed
+
+    private void jm_OrdenarFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_OrdenarFechaActionPerformed
+        // TODO add your handling code here:
+        //ordenar por fecha
+        DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) JT_FileNavigator.getLastSelectedPathComponent();
+            if (selectedNode != null) {
+                OrdenarFecha(selectedNode);
+                ((DefaultTreeModel) JT_FileNavigator.getModel()).reload(selectedNode);
+            }else{
+                JOptionPane.showMessageDialog(jd_FileNavegator, "Primero escoja una carpeta con cosas adentro");
+            }
+    }//GEN-LAST:event_jm_OrdenarFechaActionPerformed
+
+    private void jm_OrdenarTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_OrdenarTipoActionPerformed
+        // TODO add your handling code here:
+        DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) JT_FileNavigator.getLastSelectedPathComponent();
+            if (selectedNode != null) {
+                OrdenarTipo(selectedNode);
+                ((DefaultTreeModel) JT_FileNavigator.getModel()).reload(selectedNode);
+            }else{
+                JOptionPane.showMessageDialog(jd_FileNavegator, "Primero escoja una carpeta con cosas adentro");
+            }
+    }//GEN-LAST:event_jm_OrdenarTipoActionPerformed
+
+    private void jm_OrdenarTamañoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_OrdenarTamañoActionPerformed
+        // TODO add your handling code here:
+        DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) JT_FileNavigator.getLastSelectedPathComponent();
+            if (selectedNode != null) {
+                OrdenarTamaño(selectedNode);
+                ((DefaultTreeModel) JT_FileNavigator.getModel()).reload(selectedNode);
+            }else{
+                JOptionPane.showMessageDialog(jd_FileNavegator, "Primero escoja una carpeta con cosas adentro");
+            }
+    }//GEN-LAST:event_jm_OrdenarTamañoActionPerformed
+
+    private void jm_AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_AgregarActionPerformed
+        // TODO add your handling code here:
+        DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) JT_FileNavigator.getLastSelectedPathComponent();
+        if(selectedNode != null){
+            DefaultTreeModel m = (DefaultTreeModel) JT_FileNavigator.getModel();
+            //ver si quiere una carpeta o un archivo
+            int op = JOptionPane.showConfirmDialog(jd_FileNavegator, "Desea agregar una Carpeta?");
+            if(op == 0){
+                //agregar la carpeta
+                DefaultMutableTreeNode n = new DefaultMutableTreeNode("Nueva Carpeta");
+                DefaultMutableTreeNode p = new DefaultMutableTreeNode("Nuevo Archivo");
+                n.add(p);
+                selectedNode.add(n);
+                m.reload();
+            }else if(op == 1){
+                int op2 = JOptionPane.showConfirmDialog(jd_FileNavegator, "Desea agregar un archivo?");
+                if(op2 == 0){
+                  DefaultMutableTreeNode n = new DefaultMutableTreeNode( new Archivo("Nuevo Archivo", new Date(), "xd", "0k"));  
+                  selectedNode.add(n);
+                  m.reload();
+                }else if(op2 == 1){
+                    JOptionPane.showMessageDialog(jd_FileNavegator, "Tonss pa que escoges esta opcion xdddd");
+                }
+            }
+            
+        }else{
+            JOptionPane.showMessageDialog(jd_FileNavegator, "Primero escoja una carpeta con cosas adentro");
+        }
+        
+    }//GEN-LAST:event_jm_AgregarActionPerformed
+
+    private void jm_CambiarNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_CambiarNombreActionPerformed
+        // TODO add your handling code here:
+        DefaultTreeModel m = (DefaultTreeModel) JT_FileNavigator.getModel();
+        DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) JT_FileNavigator.getLastSelectedPathComponent();
+        if(selectedNode != null){
+            Object x = selectedNode.getUserObject();
+            if (x instanceof Archivo){
+                String nombre = JOptionPane.showInputDialog("Ingrese el nuevo nombre:");
+                ((Archivo)(selectedNode.getUserObject())).setNombre(nombre);
+            }else{
+                String nombre = JOptionPane.showInputDialog("Ingrese el nuevo nombre:");
+                DefaultMutableTreeNode nc = new DefaultMutableTreeNode(nombre);
+                System.out.println("test 2");
+                nc.add(selectedNode);
+                System.out.println("test");
+                DefaultMutableTreeNode Z = (DefaultMutableTreeNode) m.getRoot();
+                Z.remove(selectedNode);
+                Z.add(nc);
+                m.reload();
+            }
+        }else{
+            JOptionPane.showMessageDialog(jd_FileNavegator, "Primero escoja el elemento");
+        }
+    }//GEN-LAST:event_jm_CambiarNombreActionPerformed
+
+    private void jb_SendTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_SendTextActionPerformed
+        // TODO add your handling code here:
+        String chat = TP_GroupChat.getText();
+        TP_GroupChat.setText("");
+        String ActGroupchat = chat+"\n"+Act_Usuario.getUserName()+": "+TP_MsgKeyBoard.getText();
+        TP_GroupChat.setText(ActGroupchat);
+        TP_MsgKeyBoard.setText("");
+        //mandar el current Groupchat al txt... osea con el file writer y todo eso xd
+        FileWriter fw = null;
+        BufferedWriter bw = null;
+        try {
+            //siempre se sobre escribe el archivo
+            fw = new FileWriter("./Mensajero.txt", false);
+            bw = new BufferedWriter(fw);
+            bw.write(ActGroupchat);
+            bw.flush();
+        } catch (Exception ex) {
+        }
+        try {
+            bw.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            fw.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_jb_SendTextActionPerformed
+
+    private void Icon_RedSocialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Icon_RedSocialMouseClicked
+        // TODO add your handling code here:
+        jd_Meta.pack();
+        jd_Meta.setModal(true);
+        jd_Meta.setLocationRelativeTo(this);
+        jd_Meta.setVisible(true);
+    }//GEN-LAST:event_Icon_RedSocialMouseClicked
+
+    private void Icon_MsjrMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Icon_MsjrMouseClicked
+        // TODO add your handling code here:
+        //llenar el groupchat si ya hay convo, osea hacer el get file con el bufferreader y todo ... maten-
+        
+        
+        
+        //abrir el dialog
+        jd_Mensajero.pack();
+        jd_Mensajero.setModal(true);
+        jd_Mensajero.setLocationRelativeTo(this);
+        jd_Mensajero.setVisible(true);
+        
+    }//GEN-LAST:event_Icon_MsjrMouseClicked
 
     /**
      * @param args the command line arguments
@@ -2294,6 +2559,92 @@ public class Principal extends javax.swing.JFrame {
         jd_LogIn.setLocationRelativeTo(this);
         jd_LogIn.setVisible(true);
     }
+    private void RandomizarTree(DefaultMutableTreeNode node) {
+        List<Object> Hs = new ArrayList<>();
+        int Hcount = node.getChildCount();
+
+        for (int i = 0; i < Hcount; i++) {
+            DefaultMutableTreeNode H = (DefaultMutableTreeNode) node.getChildAt(i);
+            Hs.add(H.getUserObject());
+        }
+
+        Collections.shuffle(Hs);
+
+        for (int i = 0; i < Hcount; i++) {
+            DefaultMutableTreeNode HijoNodo = (DefaultMutableTreeNode) node.getChildAt(i);
+            HijoNodo.setUserObject(Hs.get(i));
+        }
+    }//fin organizar
+    
+    private void OrdenarAlpha(DefaultMutableTreeNode Papa) {
+    List<DefaultMutableTreeNode> NodosHijos = new ArrayList<>();
+    for (int i = 0; i < Papa.getChildCount(); i++) {
+        DefaultMutableTreeNode NodoHijo = (DefaultMutableTreeNode) Papa.getChildAt(i);
+        NodosHijos.add(NodoHijo);
+    }
+    Collections.sort(NodosHijos, (nodo1, nodo2) -> {
+        String carp1 = nodo1.getUserObject().toString();
+        String carp2 = nodo2.getUserObject().toString();
+        return carp1.compareToIgnoreCase(carp2);
+    }
+    );
+    Papa.removeAllChildren();
+    for (DefaultMutableTreeNode childNode : NodosHijos) {
+        Papa.add(childNode);
+    }
+    
+    }//fin ordenar alphabeticamente
+    
+    private void OrdenarTipo(DefaultMutableTreeNode Papa) {
+    List<DefaultMutableTreeNode> NodosHijos = new ArrayList<>();
+    for (int i = 0; i < Papa.getChildCount(); i++) {
+        DefaultMutableTreeNode NodoHijo = (DefaultMutableTreeNode) Papa.getChildAt(i);
+        NodosHijos.add(NodoHijo);
+    }
+    Collections.sort(NodosHijos, (nodo1, nodo2) -> {
+        String carp1 = ((Archivo)(nodo1.getUserObject())).getTipo();
+        String carp2 = ((Archivo)(nodo2.getUserObject())).getTipo();
+        return carp1.compareToIgnoreCase(carp2);
+    }
+    );
+    Papa.removeAllChildren();
+    for (DefaultMutableTreeNode childNode : NodosHijos) {
+        Papa.add(childNode);
+    }
+    
+    }//fin ordenar tipo
+    private void OrdenarTamaño(DefaultMutableTreeNode Papa) {
+    List<DefaultMutableTreeNode> NodosHijos = new ArrayList<>();
+    for (int i = 0; i < Papa.getChildCount(); i++) {
+        DefaultMutableTreeNode NodoHijo = (DefaultMutableTreeNode) Papa.getChildAt(i);
+        NodosHijos.add(NodoHijo);
+    }
+    Collections.sort(NodosHijos, (nodo1, nodo2) -> {
+        String carp1 = ((Archivo)(nodo1.getUserObject())).getTamaño();
+        String carp2 = ((Archivo)(nodo2.getUserObject())).getTamaño();
+        return carp1.compareToIgnoreCase(carp2);
+    }
+    );
+    Papa.removeAllChildren();
+    for (DefaultMutableTreeNode childNode : NodosHijos) {
+        Papa.add(childNode);
+    }
+    
+    }//fin ordenar Tamaño
+    private void OrdenarFecha(DefaultMutableTreeNode Papa) {
+    List<DefaultMutableTreeNode> NodosHijos = new ArrayList<>();
+    for (int i = 0; i < Papa.getChildCount(); i++) {
+        DefaultMutableTreeNode NodoHijo = (DefaultMutableTreeNode) Papa.getChildAt(i);
+        NodosHijos.add(NodoHijo);
+    }
+    Collections.reverse(NodosHijos);
+    Papa.removeAllChildren();
+    for (DefaultMutableTreeNode childNode : NodosHijos) {
+        Papa.add(childNode);
+    }
+    }//fin organizar por fecha
+    
+    
     public String AdminUserName = "Admin237";
     public String AdminPass = "1209";
     public Usuario admin = new Usuario(AdminUserName, AdminPass);
@@ -2335,7 +2686,6 @@ public class Principal extends javax.swing.JFrame {
     static Archivo tarj = new Archivo("TarjetaIdentidad", new Date(), "pdf", "1k");
     static Archivo acta = new Archivo("ActaNacimiento", new Date(), "pdf", "1k");
     static Archivo receta = new Archivo("RecetaCangreburger", new Date(), "txt", "6k");
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Icon_CDM;
     private javax.swing.JLabel Icon_Calendario;
@@ -2352,8 +2702,11 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel Icon_PegarMord;
     private javax.swing.JLabel Icon_RedSocial;
     private javax.swing.JLabel Icon_TijeraMord;
+    private javax.swing.JLabel JL_PcGroupChat;
     private javax.swing.JMenu JM_ExtraOpciones;
     private javax.swing.JTree JT_FileNavigator;
+    private javax.swing.JTextPane TP_GroupChat;
+    private javax.swing.JTextPane TP_MsgKeyBoard;
     private javax.swing.JTextPane TP_PaginaMord;
     private javax.swing.JButton UselessButton;
     private javax.swing.ButtonGroup bg_TareaoEvento;
@@ -2366,11 +2719,15 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator10;
     private javax.swing.JPopupMenu.Separator jSeparator11;
@@ -2388,6 +2745,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton jb_Pause;
     private javax.swing.JButton jb_Play;
     private javax.swing.JButton jb_ProcesarRecordatorio;
+    private javax.swing.JButton jb_SendText;
     private javax.swing.JButton jb_SessionShutter;
     private javax.swing.JButton jb_ShutDown;
     private javax.swing.JButton jb_Stop;

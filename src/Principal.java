@@ -55,7 +55,20 @@ public class Principal extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         //Para que se abra en full screen
         this.setExtendedState(MAXIMIZED_BOTH);
-        usuarios.add(admin);
+        //Agregar los users creados al arraylist usuarios
+        Scanner sc = null;
+        File users = new File("./Usuarios.txt");
+        if (users.exists()) {
+            try {
+                sc = new Scanner(users);
+                sc.useDelimiter(";");
+                while (sc.hasNext()) {
+                    usuarios.add(new Usuario(sc.next(), sc.next()));
+                }
+            } catch (Exception ex) {
+            }
+            sc.close();
+        }//if
         
         //cosas pa Mord (el font)
         docMord = TP_PaginaMord.getStyledDocument();
@@ -216,6 +229,11 @@ public class Principal extends javax.swing.JFrame {
         jp_MetaBackGround = new javax.swing.JPanel();
         jd_NetBeans = new javax.swing.JDialog();
         jp_NetBeansBackGround = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        JT_NetBeans = new javax.swing.JTree();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        TP_CodingSpace = new javax.swing.JTextPane();
         jpm_MordArchivo = new javax.swing.JPopupMenu();
         jm_MordGuardar = new javax.swing.JMenuItem();
         jSeparator6 = new javax.swing.JPopupMenu.Separator();
@@ -227,8 +245,6 @@ public class Principal extends javax.swing.JFrame {
         bg_TareaoEvento = new javax.swing.ButtonGroup();
         jpm_SessionShutter = new javax.swing.JPopupMenu();
         jm_LockComputer = new javax.swing.JMenuItem();
-        jm_SwitchUser = new javax.swing.JMenuItem();
-        jm_LogOff = new javax.swing.JMenuItem();
         jm_ChangePassword = new javax.swing.JMenuItem();
         jSeparator8 = new javax.swing.JPopupMenu.Separator();
         jm_Cancelar = new javax.swing.JMenuItem();
@@ -250,6 +266,24 @@ public class Principal extends javax.swing.JFrame {
         jm_CambiarNombre = new javax.swing.JMenuItem();
         jm_Copiar = new javax.swing.JMenuItem();
         jm_Pegar = new javax.swing.JMenuItem();
+        jd_AgregarUsuario = new javax.swing.JDialog();
+        jp_AgregarBackground = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jt_NombreNewUser = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jt_ContraNewUser = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jt_ConfirmContraNewUser = new javax.swing.JTextField();
+        jb_AgregarUsuarioNuevo = new javax.swing.JButton();
+        jd_EliminarUsuarios = new javax.swing.JDialog();
+        jPanel8 = new javax.swing.JPanel();
+        jPanel9 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jb_ElimUser = new javax.swing.JButton();
+        jt_EliminarUser = new javax.swing.JTextField();
         jp_LockScreenBackGround = new javax.swing.JPanel();
         jl_LockScreen = new javax.swing.JLabel();
         jp_HomeScreenBackGround = new javax.swing.JPanel();
@@ -1290,6 +1324,46 @@ public class Principal extends javax.swing.JFrame {
         jp_NetBeansBackGround.setBackground(new java.awt.Color(255, 255, 255));
         jp_NetBeansBackGround.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 810, Short.MAX_VALUE)
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 20, Short.MAX_VALUE)
+        );
+
+        jp_NetBeansBackGround.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 20));
+
+        treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("MiniWindows");
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("<default package>");
+        javax.swing.tree.DefaultMutableTreeNode treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Archivo");
+        treeNode2.add(treeNode3);
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Iconos");
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("LockScreen");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("OperaLogo");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("MetaLogo");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("SpotifyL");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Mondows");
+        treeNode2.add(treeNode3);
+        treeNode1.add(treeNode2);
+        JT_NetBeans.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jScrollPane8.setViewportView(JT_NetBeans);
+
+        jp_NetBeansBackGround.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 150, 510));
+
+        TP_CodingSpace.setEnabled(false);
+        jScrollPane9.setViewportView(TP_CodingSpace);
+
+        jp_NetBeansBackGround.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 660, 510));
+
         javax.swing.GroupLayout jd_NetBeansLayout = new javax.swing.GroupLayout(jd_NetBeans.getContentPane());
         jd_NetBeans.getContentPane().setLayout(jd_NetBeansLayout);
         jd_NetBeansLayout.setHorizontalGroup(
@@ -1348,16 +1422,13 @@ public class Principal extends javax.swing.JFrame {
         });
         jpm_SessionShutter.add(jm_LockComputer);
 
-        jm_SwitchUser.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jm_SwitchUser.setText("Switch User");
-        jpm_SessionShutter.add(jm_SwitchUser);
-
-        jm_LogOff.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jm_LogOff.setText("Log-Off");
-        jpm_SessionShutter.add(jm_LogOff);
-
         jm_ChangePassword.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         jm_ChangePassword.setText("Change this Users Password");
+        jm_ChangePassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jm_ChangePasswordActionPerformed(evt);
+            }
+        });
         jpm_SessionShutter.add(jm_ChangePassword);
         jpm_SessionShutter.add(jSeparator8);
 
@@ -1368,10 +1439,20 @@ public class Principal extends javax.swing.JFrame {
 
         jm_AgregarUsuario.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         jm_AgregarUsuario.setText("Agregar Usuario");
+        jm_AgregarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jm_AgregarUsuarioActionPerformed(evt);
+            }
+        });
         jpm_UsuariosSettingsAdmin.add(jm_AgregarUsuario);
 
         jm_EliminarUsuario.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         jm_EliminarUsuario.setText("Eliminar Usuario");
+        jm_EliminarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jm_EliminarUsuarioActionPerformed(evt);
+            }
+        });
         jpm_UsuariosSettingsAdmin.add(jm_EliminarUsuario);
         jpm_UsuariosSettingsAdmin.add(jSeparator9);
 
@@ -1469,6 +1550,118 @@ public class Principal extends javax.swing.JFrame {
         JM_ExtraOpciones.add(jm_Pegar);
 
         jpm_JTreeMenu.add(JM_ExtraOpciones);
+
+        jp_AgregarBackground.setBackground(new java.awt.Color(153, 255, 255));
+        jp_AgregarBackground.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 550, Short.MAX_VALUE)
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 20, Short.MAX_VALUE)
+        );
+
+        jp_AgregarBackground.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, 20));
+
+        jLabel2.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Ingrese el Nombre de Usuario:");
+        jp_AgregarBackground.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 240, 30));
+        jp_AgregarBackground.add(jt_NombreNewUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 100, 150, 30));
+
+        jLabel3.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Crear Usuario");
+        jp_AgregarBackground.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, 190, 40));
+
+        jLabel4.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Ingrese la Contraseña:");
+        jp_AgregarBackground.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 240, 30));
+        jp_AgregarBackground.add(jt_ContraNewUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 150, 30));
+
+        jLabel5.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("Confirme la Contraseña:");
+        jp_AgregarBackground.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 240, 30));
+        jp_AgregarBackground.add(jt_ConfirmContraNewUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, 150, 30));
+
+        jb_AgregarUsuarioNuevo.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        jb_AgregarUsuarioNuevo.setText("Agregar Usuario");
+        jb_AgregarUsuarioNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_AgregarUsuarioNuevoActionPerformed(evt);
+            }
+        });
+        jp_AgregarBackground.add(jb_AgregarUsuarioNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, 170, 50));
+
+        javax.swing.GroupLayout jd_AgregarUsuarioLayout = new javax.swing.GroupLayout(jd_AgregarUsuario.getContentPane());
+        jd_AgregarUsuario.getContentPane().setLayout(jd_AgregarUsuarioLayout);
+        jd_AgregarUsuarioLayout.setHorizontalGroup(
+            jd_AgregarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jp_AgregarBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jd_AgregarUsuarioLayout.setVerticalGroup(
+            jd_AgregarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jp_AgregarBackground, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
+        );
+
+        jPanel8.setBackground(new java.awt.Color(255, 204, 204));
+        jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 500, Short.MAX_VALUE)
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 20, Short.MAX_VALUE)
+        );
+
+        jPanel8.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 20));
+
+        jLabel6.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setText("ELIMINAR USUARIOS");
+        jPanel8.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, 300, 40));
+
+        jLabel7.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Escoger Que Usuario Eliminar:");
+        jPanel8.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 230, 40));
+
+        jb_ElimUser.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        jb_ElimUser.setForeground(new java.awt.Color(0, 0, 0));
+        jb_ElimUser.setText("ELIMINAR");
+        jb_ElimUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_ElimUserActionPerformed(evt);
+            }
+        });
+        jPanel8.add(jb_ElimUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, 170, 60));
+        jPanel8.add(jt_EliminarUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 120, 170, 40));
+
+        javax.swing.GroupLayout jd_EliminarUsuariosLayout = new javax.swing.GroupLayout(jd_EliminarUsuarios.getContentPane());
+        jd_EliminarUsuarios.getContentPane().setLayout(jd_EliminarUsuariosLayout);
+        jd_EliminarUsuariosLayout.setHorizontalGroup(
+            jd_EliminarUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        jd_EliminarUsuariosLayout.setVerticalGroup(
+            jd_EliminarUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -1628,6 +1821,11 @@ public class Principal extends javax.swing.JFrame {
 
         Icon_NetBeans.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/NetB.png"))); // NOI18N
         Icon_NetBeans.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Icon_NetBeans.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Icon_NetBeansMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jp_HomeScreenIconsLayout = new javax.swing.GroupLayout(jp_HomeScreenIcons);
         jp_HomeScreenIcons.setLayout(jp_HomeScreenIconsLayout);
@@ -1819,6 +2017,8 @@ public class Principal extends javax.swing.JFrame {
             jb_SessionShutter.setVisible(true);
             if(Act_Usuario.getUserName().equals("Admin237")){
                 jb_UsuariosSettings.setVisible(true);
+            }else{
+                jb_UsuariosSettings.setVisible(false);
             }
         }else{
             JOptionPane.showMessageDialog(jd_LogIn, "Username y password no concuerdan");
@@ -2061,13 +2261,13 @@ public class Principal extends javax.swing.JFrame {
 
     private void jt_passwordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jt_passwordMouseClicked
         // password text field
-        if(jt_UserName.getText().isEmpty()){
-           jt_UserName.setText("Ingrese su UserName:");
-           jt_UserName.setForeground(Color.gray);
-        }
         if(jt_password.getText().equals("**********")){
             jt_password.setText("");
             jt_password.setForeground(Color.BLACK);
+        }
+        if(jt_UserName.getText().isEmpty()){
+           jt_UserName.setText("Ingrese su UserName:");
+           jt_UserName.setForeground(Color.gray);
         }
     }//GEN-LAST:event_jt_passwordMouseClicked
 
@@ -2470,7 +2670,7 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         String chat = TP_GroupChat.getText();
         TP_GroupChat.setText("");
-        String ActGroupchat = chat+"\n"+Act_Usuario.getUserName()+": "+TP_MsgKeyBoard.getText();
+        String ActGroupchat = chat+"\n"+Act_Usuario.getUserName()+": "+TP_MsgKeyBoard.getText()+";";
         TP_GroupChat.setText(ActGroupchat);
         TP_MsgKeyBoard.setText("");
         //mandar el current Groupchat al txt... osea con el file writer y todo eso xd
@@ -2508,7 +2708,22 @@ public class Principal extends javax.swing.JFrame {
     private void Icon_MsjrMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Icon_MsjrMouseClicked
         // TODO add your handling code here:
         //llenar el groupchat si ya hay convo, osea hacer el get file con el bufferreader y todo ... maten-
-        
+        TP_GroupChat.setText("");
+            try {
+                File archivo = new File("Mensajero.txt");
+                Scanner sc = new Scanner(archivo);
+                sc.useDelimiter(";");
+                String OldGC = "";
+                while (sc.hasNext()) {
+                    OldGC += sc.next();
+                }
+                TP_GroupChat.setText(OldGC);
+                sc.close();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            Scanner sc = new Scanner(System.in);
+            sc.close();
         
         
         //abrir el dialog
@@ -2518,6 +2733,168 @@ public class Principal extends javax.swing.JFrame {
         jd_Mensajero.setVisible(true);
         
     }//GEN-LAST:event_Icon_MsjrMouseClicked
+
+    private void Icon_NetBeansMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Icon_NetBeansMouseClicked
+        // TODO add your handling code here:
+        jd_NetBeans.pack();
+        jd_NetBeans.setModal(true);
+        jd_NetBeans.setLocationRelativeTo(this);
+        jd_NetBeans.setVisible(true);
+    }//GEN-LAST:event_Icon_NetBeansMouseClicked
+
+    private void jb_AgregarUsuarioNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_AgregarUsuarioNuevoActionPerformed
+        // TODO add your handling code here:
+        String Name = jt_NombreNewUser.getText();
+        String pass = jt_ContraNewUser.getText();
+        String conpass = jt_ConfirmContraNewUser.getText();
+        
+        if(pass.equals(conpass)){
+            Usuario NU = new Usuario(Name, pass);
+            usuarios.add(NU);
+            //agregar el Usuario al txt
+            FileWriter fw = null;
+            BufferedWriter bw = null;
+            try {
+                //siempre se sobre escribe el archivo
+                //formato del parseo sera: NombreUsuario;Contraseña;NombreUsuario;Contraseña
+                fw = new FileWriter("./Usuarios.txt", false);
+                bw = new BufferedWriter(fw);
+                for (Usuario u : usuarios) {
+                    bw.write(u.getUserName()+";");
+                    bw.write(u.getPassword()+";");
+                }
+                bw.flush();
+            } catch (Exception ex) {
+            }
+            try {
+                bw.close();
+            } catch (IOException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                fw.close();
+            } catch (IOException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            JOptionPane.showMessageDialog(jd_AgregarUsuario, "Usuario Creado Exitosamente!");
+            jd_AgregarUsuario.dispose();
+        }else{
+            JOptionPane.showMessageDialog(jd_AgregarUsuario, "Contraseña y Contrasela confirmada no coinciden \nIntentelo de Nuevo.");
+            jt_ContraNewUser.setText("");
+            jt_ConfirmContraNewUser.setText("");
+        }
+    }//GEN-LAST:event_jb_AgregarUsuarioNuevoActionPerformed
+
+    private void jm_AgregarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_AgregarUsuarioActionPerformed
+        // TODO add your handling code here:
+        jd_AgregarUsuario.pack();
+        jd_AgregarUsuario.setModal(true);
+        jd_AgregarUsuario.setLocationRelativeTo(this);
+        jd_AgregarUsuario.setVisible(true);
+    }//GEN-LAST:event_jm_AgregarUsuarioActionPerformed
+
+    private void jm_EliminarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_EliminarUsuarioActionPerformed
+        // TODO add your handling code here:
+        jd_EliminarUsuarios.pack();
+        jd_EliminarUsuarios .setModal(true);
+        jd_EliminarUsuarios.setLocationRelativeTo(this);
+        jd_EliminarUsuarios.setVisible(true);
+    }//GEN-LAST:event_jm_EliminarUsuarioActionPerformed
+
+    private void jb_ElimUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_ElimUserActionPerformed
+        // TODO add your handling code here:
+        
+        if(jt_EliminarUser.getText().equalsIgnoreCase(AdminUserName)){
+            JOptionPane.showMessageDialog(jd_EliminarUsuarios, "No se puede eliminar el Usuario Admin xd");
+        }else{
+            String user = jt_EliminarUser.getText();
+            boolean valid = false;
+            int pos = -1;
+            for (int i = 0; i < usuarios.size(); i++) {
+                if(user.equals(usuarios.get(i).getUserName())){
+                    valid = true;
+                    pos = i;
+                }
+            }
+            if(valid == false){
+                JOptionPane.showMessageDialog(jd_EliminarUsuarios, "Usuario no encontrado \nIntentelo de Nuevo");
+                jt_EliminarUser.setText("");
+            }else{
+                usuarios.remove(pos);
+                //actualizar el txt
+                FileWriter fw = null;
+                BufferedWriter bw = null;
+                try {
+                    //siempre se sobre escribe el archivo
+                    //formato del parseo sera: NombreUsuario;Contraseña;NombreUsuario;Contraseña
+                    fw = new FileWriter("./Usuarios.txt", false);
+                    bw = new BufferedWriter(fw);
+                    for (Usuario u : usuarios) {
+                        bw.write(u.getUserName()+";");
+                        bw.write(u.getPassword()+";");
+                    }
+                    bw.flush();
+                } catch (Exception ex) {
+                }
+                try {
+                    bw.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                try {
+                    fw.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                JOptionPane.showMessageDialog(jd_EliminarUsuarios, "USuario Eliminado Exitosamente!");
+                jd_EliminarUsuarios.dispose();
+            }//fin if
+        }//fin else
+        
+    }//GEN-LAST:event_jb_ElimUserActionPerformed
+
+    private void jm_ChangePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_ChangePasswordActionPerformed
+        // TODO add your handling code here:
+        if(Act_Usuario.getUserName().equalsIgnoreCase(AdminUserName)){
+            JOptionPane.showMessageDialog(this, "No se le puede cambiar la contraseña al Admin sin permisos especiales");
+            //esos permisos especiales no existes jaja
+        }else{
+            for (int i = 0; i < usuarios.size(); i++) {
+                if(Act_Usuario.equals(usuarios.get(i))){
+                    String neuPass = JOptionPane.showInputDialog("Ingrese la nueva contraseña para este usuario:");
+                    usuarios.get(i).setPassword(neuPass);
+                    //actualizar el txt
+                    FileWriter fw = null;
+                    BufferedWriter bw = null;
+                    try {
+                        //siempre se sobre escribe el archivo
+                        //formato del parseo sera: NombreUsuario;Contraseña;NombreUsuario;Contraseña
+                        fw = new FileWriter("./Usuarios.txt", false);
+                        bw = new BufferedWriter(fw);
+                        for (Usuario u : usuarios) {
+                            bw.write(u.getUserName()+";");
+                            bw.write(u.getPassword()+";");
+                        }
+                        bw.flush();
+                    } catch (Exception ex) {
+                    }
+                    try {
+                        bw.close();
+                    } catch (IOException ex) {
+                        Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    try {
+                        fw.close();
+                    } catch (IOException ex) {
+                        Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    
+                    JOptionPane.showMessageDialog(this, "Contraseña Cambiada Exitosamente");
+                }//fin if
+            }//fin for
+        }//fin if externo
+    }//GEN-LAST:event_jm_ChangePasswordActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2705,6 +3082,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel JL_PcGroupChat;
     private javax.swing.JMenu JM_ExtraOpciones;
     private javax.swing.JTree JT_FileNavigator;
+    private javax.swing.JTree JT_NetBeans;
+    private javax.swing.JTextPane TP_CodingSpace;
     private javax.swing.JTextPane TP_GroupChat;
     private javax.swing.JTextPane TP_MsgKeyBoard;
     private javax.swing.JTextPane TP_PaginaMord;
@@ -2716,11 +3095,21 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cb_SegundosRecordatorio;
     private javax.swing.JComboBox<String> cb_TamañoMord;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -2728,6 +3117,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator10;
     private javax.swing.JPopupMenu.Separator jSeparator11;
@@ -2741,6 +3132,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator9;
     private javax.swing.JTextPane jTextPane1;
     private javax.swing.JButton jb_AgregarCancion;
+    private javax.swing.JButton jb_AgregarUsuarioNuevo;
+    private javax.swing.JButton jb_ElimUser;
     private javax.swing.JButton jb_Ok;
     private javax.swing.JButton jb_Pause;
     private javax.swing.JButton jb_Play;
@@ -2755,8 +3148,10 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton jb_izquierdaVI;
     private javax.swing.JButton jb_opciones;
     private com.toedter.calendar.JCalendar jc_FechaRecordatorio;
+    private javax.swing.JDialog jd_AgregarUsuario;
     private javax.swing.JDialog jd_CMD;
     private javax.swing.JDialog jd_Calendario;
+    private javax.swing.JDialog jd_EliminarUsuarios;
     private javax.swing.JDialog jd_FileNavegator;
     private javax.swing.JDialog jd_LogIn;
     private javax.swing.JDialog jd_Mensajero;
@@ -2809,7 +3204,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jm_EliminarUsuario;
     private javax.swing.JMenuItem jm_LimpiarCajas;
     private javax.swing.JMenuItem jm_LockComputer;
-    private javax.swing.JMenuItem jm_LogOff;
     private javax.swing.JMenuItem jm_MordAbrir;
     private javax.swing.JMenuItem jm_MordGuardar;
     private javax.swing.JMenuItem jm_OrdenarFecha;
@@ -2818,7 +3212,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jm_OrdenarTipo;
     private javax.swing.JMenuItem jm_Organizar;
     private javax.swing.JMenuItem jm_Pegar;
-    private javax.swing.JMenuItem jm_SwitchUser;
+    private javax.swing.JPanel jp_AgregarBackground;
     private javax.swing.JPanel jp_CMDBackGround;
     private javax.swing.JPanel jp_CalendarioBackGround;
     private javax.swing.JPanel jp_ColorLetraMord;
@@ -2855,6 +3249,10 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPopupMenu jpm_UsuariosSettingsAdmin;
     private javax.swing.JRadioButton jrb_EventoCalendario;
     private javax.swing.JRadioButton jrb_TareaCalendario;
+    private javax.swing.JTextField jt_ConfirmContraNewUser;
+    private javax.swing.JTextField jt_ContraNewUser;
+    private javax.swing.JTextField jt_EliminarUser;
+    private javax.swing.JTextField jt_NombreNewUser;
     private javax.swing.JTable jt_Playlist;
     private javax.swing.JTable jt_Recordatorios;
     private javax.swing.JTextField jt_TituloRecordatorio;

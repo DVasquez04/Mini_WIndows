@@ -1,5 +1,6 @@
 
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.GraphicsEnvironment;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -9,6 +10,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -308,6 +311,7 @@ public class Principal extends javax.swing.JFrame {
         jb_SessionShutter = new javax.swing.JButton();
         jl_HoraTaskBar = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jl_HomeScreenWallpaper = new javax.swing.JLabel();
 
         jd_LogIn.setResizable(false);
 
@@ -1754,6 +1758,11 @@ public class Principal extends javax.swing.JFrame {
 
         Icon_Navegador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Operagx_logo.png"))); // NOI18N
         Icon_Navegador.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Icon_Navegador.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Icon_NavegadorMouseClicked(evt);
+            }
+        });
 
         Icon_FileExplorer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/filNavigator.jpg"))); // NOI18N
         Icon_FileExplorer.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -1939,6 +1948,9 @@ public class Principal extends javax.swing.JFrame {
         );
 
         jp_HomeScreenBackGround.add(jp_TaskBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 840, 1560, 40));
+
+        jl_HomeScreenWallpaper.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Wallpaper xd.jpg"))); // NOI18N
+        jp_HomeScreenBackGround.add(jl_HomeScreenWallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, 1460, 800));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -2896,6 +2908,17 @@ public class Principal extends javax.swing.JFrame {
         }//fin if externo
     }//GEN-LAST:event_jm_ChangePasswordActionPerformed
 
+    private void Icon_NavegadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Icon_NavegadorMouseClicked
+        // TODO add your handling code here:
+        //rick Roll xd
+        String urlYouTube = "https://youtu.be/dQw4w9WgXcQ?si=YASA6briBWO0s0EQ";
+        try {
+            Desktop.getDesktop().browse(new URI(urlYouTube));
+        } catch (IOException | URISyntaxException e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_Icon_NavegadorMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -3170,6 +3193,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jl_CurrentUser;
     private javax.swing.JLabel jl_FechaEventCalendario;
     private javax.swing.JLabel jl_FuenteMord;
+    private javax.swing.JLabel jl_HomeScreenWallpaper;
     private javax.swing.JLabel jl_HoraTaskBar;
     private javax.swing.JLabel jl_HoraTopBar;
     private javax.swing.JLabel jl_ItalixMord;
